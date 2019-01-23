@@ -1,0 +1,35 @@
+﻿@using hehe.Models.DBModels
+@model hehe.ViewModels.PCIndexViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>
+    Categories
+</h2>
+
+<table class="table">
+
+    @foreach (var item in Model.PCList)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@Html.ActionLink("View", "ViewProducts", new { id = item.ProductCategoryId })</td>
+            @if (Request.IsAuthenticated)
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProductCategoryId })
+                </td>
+            }
+        </tr>
+    }
+</table>
+@if (Request.IsAuthenticated)
+{
+    <td>@Html.ActionLink("Create New Category", "Create") | </td>
+}
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <td>@Html.ActionLink("View Users", "Index", "User")</td>
+}

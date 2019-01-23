@@ -1,0 +1,32 @@
+﻿@model hehe.ViewModels.ProductIndexViewModel
+
+@{
+    ViewBag.Title = "View";
+}
+
+<p>
+    @Html.ActionLink("Back to categories", "Index", new { })
+</p>
+
+<table class="table">
+    <tr>
+        <th>Product</th>
+    </tr>
+    @foreach (var item in Model.ProductList)
+    {
+    <tr>
+        <td>@item.Name</td>
+        <td>@Html.ActionLink("View", "ViewProductDetails", new { id = item.ProductId })</td>
+        @if (Request.IsAuthenticated)
+        {
+            <td>
+                @Html.ActionLink("Edit", "EditProduct", new { id = item.ProductId })
+            </td>
+        }
+    </tr>
+    }
+</table>
+@if (Request.IsAuthenticated)
+{
+    <td>@Html.ActionLink("Create New Product", "CreateProduct")</td>
+}

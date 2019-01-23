@@ -1,0 +1,31 @@
+﻿@model hehe.ViewModels.PCEditViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<p>
+    @Html.ActionLink("Back to Start", "Index", new { })
+</p>
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <table class="table">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+
+        <tr>
+            <td>Name</td>
+            <td>
+                @Html.HiddenFor(model => model.ProductCategoryId)
+                @Html.TextBoxFor(model => model.Name)
+
+                @Html.ValidationMessageFor(model => model.Name)
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Spara" />
+
+}

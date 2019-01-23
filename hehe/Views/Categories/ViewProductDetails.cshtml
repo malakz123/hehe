@@ -1,0 +1,25 @@
+﻿@model hehe.ViewModels.ProductIndexViewModel
+
+@{
+    ViewBag.Title = "View";
+}
+
+<p>
+    @Html.ActionLink("Back to categories", "Index", new { })
+</p>
+
+<table class="table">
+    <tr>
+        <th>Product</th>
+        <th>Description</th>
+        <th>Price</th>
+    </tr>
+    @foreach (var item in Model.ProductList)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>@item.Price</td>
+        </tr>
+    }
+</table>

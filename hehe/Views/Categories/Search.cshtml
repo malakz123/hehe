@@ -1,0 +1,42 @@
+﻿@model hehe.ViewModels.ProductIndexViewModel
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search result</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>@Html.ActionLink("Name", "Search", new { search = Model.Search, sort = Model.SortOrderName })</th>
+        <th>Description</th>
+        <th>@Html.ActionLink("Price", "Search", new { search = Model.Search, sort = Model.SortOrderPrice })</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var item in Model.ProductList)
+    {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Description
+            </td>
+            <td>
+                @item.Price
+            </td>
+            <td>@Html.ActionLink("View", "ViewProductDetails", new { id = item.ProductId })</td>
+
+            @if (Request.IsAuthenticated)
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProductId })
+                </td>
+            }
+        </tr>
+    }
+    </tbody>
+</table>
